@@ -3,6 +3,13 @@
 In Spring Security 5.7.0-M2 we deprecated the WebSecurityConfigurerAdapter, as we encourage users to move towards a component-based security configuration.
 
 ## Description
+### Dependencies
+- org.springframework.boot
+  - spring-boot-starter-security
+  - spring-boot-starter-web
+  - spring-boot-starter-data-jpa
+  - spring-boot-starter-thymeleaf
+- com.h2database:h2
 
 ## Demo
 
