@@ -1,4 +1,4 @@
-# Name
+# Getting started with the application protected by Spring Security
 
 Overview
 
