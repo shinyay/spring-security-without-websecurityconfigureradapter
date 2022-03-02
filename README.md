@@ -1,6 +1,6 @@
 # Getting started with the application protected by Spring Security
 
-Overview
+In Spring Security 5.7.0-M2 we deprecated the WebSecurityConfigurerAdapter, as we encourage users to move towards a component-based security configuration.
 
 ## Description
 
