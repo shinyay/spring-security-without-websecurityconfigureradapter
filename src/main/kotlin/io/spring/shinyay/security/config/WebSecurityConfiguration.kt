@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
     override fun configure(http: HttpSecurity?) {
-        super.configure(http)
+        http
+                // Do not restrict access to "/"
+                ?.authorizeRequests()
+                ?.antMatchers("/")
+                ?.permitAll()
     }
 }
