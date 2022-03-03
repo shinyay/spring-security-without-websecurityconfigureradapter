@@ -12,35 +12,36 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager
 
 @Configuration
 @EnableWebSecurity
-class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
+class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
         http
-                // Do not restrict access to "/"
-                ?.authorizeRequests()
-                ?.antMatchers("/secured")
-                ?.permitAll()
-                // Authentication is required for all other passes.
-                ?.anyRequest()
-                ?.authenticated()
-                // Login is "/login"
-                ?.and()
-                ?.formLogin()
-                ?.loginPage("/login")
-                // Logout is "/logout"
-                ?.and()
-                ?.logout()
-                ?.logoutUrl("/logout")
-                ?.logoutSuccessUrl("/")
+            // Do not restrict access to "/"
+            ?.authorizeRequests()
+            ?.antMatchers("/secured")
+            ?.permitAll()
+            // Authentication is required for all other passes.
+            ?.anyRequest()
+            ?.authenticated()
+            // Login is "/login"
+            ?.and()
+            ?.formLogin()
+            ?.loginPage("/login")
+            ?.permitAll()
+            // Logout is "/logout"
+            ?.and()
+            ?.logout()
+            ?.logoutUrl("/logout")
+            ?.logoutSuccessUrl("/")
     }
 
     @Bean
     override fun userDetailsService(): UserDetailsService {
-        val user: UserDetails = User.builder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build()
+        val user: UserDetails = User.withDefaultPasswordEncoder()
+            .username("user")
+            .password("password")
+            .roles("USER")
+            .build()
         return InMemoryUserDetailsManager(user)
     }
 }
