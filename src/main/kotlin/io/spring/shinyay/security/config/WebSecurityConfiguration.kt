@@ -17,5 +17,10 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
                 // Authentication is required for all other passes.
                 ?.anyRequest()
                 ?.authenticated()
+                // Login is "/login"
+                ?.and()
+                ?.formLogin()
+                ?.loginPage("/login")
+
     }
 }
