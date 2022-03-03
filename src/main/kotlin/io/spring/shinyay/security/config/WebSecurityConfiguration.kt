@@ -21,6 +21,10 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
                 ?.and()
                 ?.formLogin()
                 ?.loginPage("/login")
-
+                // Logout is "/logout"
+                ?.and()
+                ?.logout()
+                ?.logoutUrl("/logout")
+                ?.logoutSuccessUrl("/")
     }
 }
