@@ -5,7 +5,10 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.provisioning.InMemoryUserDetailsManager
 
 @Configuration
 @EnableWebSecurity
@@ -15,7 +18,7 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
         http
                 // Do not restrict access to "/"
                 ?.authorizeRequests()
-                ?.antMatchers("/")
+                ?.antMatchers("/secured")
                 ?.permitAll()
                 // Authentication is required for all other passes.
                 ?.anyRequest()
@@ -33,6 +36,11 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
 
     @Bean
     override fun userDetailsService(): UserDetailsService {
-        return super.userDetailsService()
+        val user: UserDetails = User.builder()
+                .username("user")
+                .password("password")
+                .roles("USER")
+                .build()
+        return InMemoryUserDetailsManager(user)
     }
 }
