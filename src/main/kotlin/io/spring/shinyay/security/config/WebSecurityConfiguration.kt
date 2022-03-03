@@ -14,5 +14,8 @@ class WebSecurityConfiguration : WebSecurityConfigurerAdapter(){
                 ?.authorizeRequests()
                 ?.antMatchers("/")
                 ?.permitAll()
+                // Authentication is required for all other passes.
+                ?.anyRequest()
+                ?.authenticated()
     }
 }
